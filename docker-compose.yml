@@ -1,0 +1,17 @@
+version: '3.9'
+
+services:
+  eduops-backend:
+    build: ./backend
+    ports:
+      - "8080:8080"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ./data:/app/data
+    depends_on:
+      - eduops-ai
+
+  eduops-ai:
+    build: ./ai-service
+    ports:
+      - "8001:8001"
